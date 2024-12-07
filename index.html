@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Handcrafted Hoop Arts</title>
+    <style>
+      
+        /* Body Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #f7e7d4, #fbc2eb);
+            color: #5a4635;
+        }
+
+        /* Header Styles */
+        header {
+            text-align: center;
+            padding: 0.03px 0;
+            background: radial-gradient(circle, #fbe7e0, #f2d6db); /* Soft pastel gradient */
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Softer shadow */
+            border-bottom: 2px solid #fad4d4; /* Subtle border */
+            margin: 0; /* Removes spacing around the heading */
+        }
+        
+
+        /* H1 Styling for Modern Pastel Look */
+        header h1 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 50px;
+            font-weight: 650;
+            color: #C2185B;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 0; /* Removes spacing around the heading */
+            padding: 14px;
+            letter-spacing: 1px; /* Slight letter spacing for clarity */
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 1); /* Soft shadow for depth */
+            /*/animation: text-soft-glow 3s infinite alternate; /* Gentle glow animation */
+        }
+
+        /* Gentle Glow Animation */
+        @keyframes text-soft-glow {
+            from {
+                text-shadow: 2px 2px 5px rgba(255, 182, 193, 0.5), 4px 4px 10px rgba(255, 192, 203, 0.3);
+            }
+
+            to {
+                text-shadow: 2px 2px 5px rgba(255, 192, 203, 0.7), 4px 4px 20px rgba(255, 182, 193, 0.5);
+            }
+        }
+
+
+
+        /* Products Section */
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .product {
+            text-align: center;
+            margin: 15px;
+            padding: 15px;
+            width: 250px;
+            color: #333333;
+        }
+
+            .product:hover {
+                transform: scale(1.05);
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            }
+
+            .product img {
+                max-width: 100%;
+                height: 200px;
+                object-fit: cover;
+            }
+
+            .product h2 {
+                font-size: 18px;
+                margin: 10px 0;
+            }
+
+            .product p {
+                color: #000000;
+            }
+
+            .product button {
+                background-color: #C87F8F;
+                color: #fff;
+                border: none;
+                padding: 10px 15px;
+                margin: 5px;
+                cursor: pointer;
+            }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            text-align: center;
+            padding: 1px 0;
+            margin: 0; /* Removes spacing around the heading */
+        }
+    </style>
+    <script>
+        // Order now function
+        function orderNow(productImage, productName, productPrice) {
+            const url = `order.html?image=${encodeURIComponent(productImage)}&name=${encodeURIComponent(productName)}&price=${encodeURIComponent(productPrice)}`;
+            window.location.href = url;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>HANDCRAFTED HOOP ARTS</h1>
+    </header>
+
+    <section class="products">
+        <!-- Product 1 -->
+        <div class="product">
+            <img src="Hoops/Marriage Hoop Art.jpg" alt="Marriage Hoop Art">
+            <h2>Marriage Hoop Art</h2>
+            <p>₹1800.00</p>
+            <button onclick="orderNow('Hoops/Marriage Hoop Art.jpg', 'Marriage Hoop Art', 1800)">Order Now</button>
+        </div>
+        <!-- Product 2 -->
+        <div class="product">
+            <img src="Hoops/Portriat Hoop Art.jpeg" alt="Portriat Hoop Art">
+            <h2>Portriat Hoop Art</h2>
+            <p>₹1750.00</p>
+            <button onclick="orderNow('Hoops/Portriat Hoop Art.jpeg', 'Portriat Hoop Art', 1750)">Order Now</button>
+        </div>
+        <!-- Product 3 -->
+        <div class="product">
+            <img src="Hoops/Mr & Miss Fouji.jpg" alt="Mr & Miss Fouji Hoop">
+            <h2>Mr & Miss Fouji Hoop</h2>
+            <p>₹1800.00</p>
+            <button onclick="orderNow('Hoops/Mr & Miss Fouji.jpg', 'Mr & Miss Fouji Hoop', 1800)">Order Now</button>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product">
+            <img src="Hoops/Friends Forever Hoop Art.jpeg" alt="Friends Forever Hoop Art">
+            <h2>Friends Forever Hoop Art</h2>
+            <p>₹1800.00</p>
+            <button onclick="orderNow('Hoops/Friends Forever Hoop Art.jpeg','Friends Forever Hoop Art', 1800)">Order Now</button>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product">
+            <img src="Hoops/Gift Hoop Art.jpg" alt="Gift Hoop Art">
+            <h2>Gift Hoop Art</h2>
+            <p>₹1500.00</p>
+            <button onclick="orderNow('Hoops/Gift Hoop Art.jpg','Gift Hoop Art', 1500)">Order Now</button>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="product">
+            <img src="Hoops/Wall Decor Hoop Art.jpeg" alt="Wall Decor Hoop Art">
+            <h2>Wall Decor Hoop Art</h2>
+            <p>₹1500.00</p>
+            <button onclick="orderNow('Hoops/Wall Decor Hoop Art.jpeg','Wall Decor Hoop Art', 1500)">Order Now</button>
+        </div>
+
+        <!-- Product 7 -->
+        <div class="product">
+            <img src="Hoops/Photo Hoop Art.jpeg" alt="Photo Hoop Art">
+            <h2>Photo Hoop Art</h2>
+            <p>₹1850.00</p>
+            <button onclick="orderNow('Hoops/Photo Hoop Art.jpeg','Photo Hoop Art', 1850)">Order Now</button>
+        </div>
+
+        <!-- Product 8 -->
+        <div class="product">
+            <img src="Hoops/Anniversary Hoop Art.png" alt="Anniversary Hoop Art">
+            <h2>Anniversary Hoop Art</h2>
+            <p>₹1800.00</p>
+            <button onclick="orderNow('Hoops/Anniversary Hoop Art.png','Anniversary Hoop Art', 1800)">Order Now</button>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Handcrafted Hoop Arts. All Rights Reserved. Developed by Jadhav Santosh Sampat</p>
+        <p>&copy; Contact us - san828jadhav@gmail.com</p>
+    </footer>
+</body>
+</html>

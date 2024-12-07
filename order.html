@@ -1,0 +1,302 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Page</title>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3.11.0/dist/email.min.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #f7e7d4, #fbc2eb);
+            color: #5a4635;
+        }
+
+        header {
+            text-align: center;
+            padding: 0.05px 0;
+            background: radial-gradient(circle, #fbe7e0, #f2d6db);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            border-bottom: 2px solid #fad4d4;
+        }
+
+            header h1 {
+                font-family: 'Roboto', sans-serif;
+                font-size: 50px;
+                font-weight: 650;
+                color: #C2185B;
+                text-transform: uppercase;
+                text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+                margin: 0; /* Removes spacing around the heading */
+                padding: 14px;
+                letter-spacing: 1px; /* Slight letter spacing for clarity */
+                text-shadow: 3px 3px 5px rgba(0, 0, 0, 1); /* Soft shadow for depth */
+            }
+
+        .order-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .product-info {
+            width: 50%;
+            text-align: center;
+        }
+
+            .product-info img {
+                max-width: 70%;
+                height: auto;
+                border-radius: 10px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+
+            .product-info h2, .product-info p {
+                margin: 10px 0;
+            }
+
+        .customer-info {
+            width: 45%;
+            background: linear-gradient(to bottom, #f7e7d4, #fbc2eb);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+            .customer-info h3 {
+                font-family: 'Roboto', sans-serif;
+                font-size: 40px;
+                font-weight: 600;
+                color: #C2185B;
+                text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+                text-align: center;
+                margin: 0; /* Removes spacing around the heading */
+            }
+
+            .customer-info form {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .customer-info label {
+                margin: 10px 0 5px;
+            }
+
+            .customer-info input, .customer-info textarea {
+                font-family: 'Roboto', sans-serif;
+                padding: 10px;
+                font-size: 18px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+            }
+
+            .customer-info button {
+                font-family: 'Roboto', sans-serif;
+                margin-top: 20px;
+                padding: 10px;
+                font-size: 20px;
+                color: #fff;
+                background-color: #C87F8F;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+                .customer-info button:hover {
+                    transform: scale(1.02);
+                    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+                    background-color: #b0687c;
+                }
+
+                .required {
+                color: red;
+                font-weight: bold;
+                }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            text-align: center;
+            padding: 1px 0;
+            margin: 0; /* Removes spacing around the heading */
+        }
+        /* Popup Styles */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            border-radius: 8px;
+            z-index: 1000;
+        }
+
+            .popup h3 {
+                color: #C2185B;
+            }
+
+            .popup button {
+                margin-top: 20px;
+                padding: 10px 20px;
+                font-size: 16px;
+                color: #fff;
+                background-color: #C87F8F;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+                .popup button:hover {
+                    transform: scale(1.05);
+                    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+                    background-color: #b0687c;
+                }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>HANDCRAFTED HOOP ARTS</h1>
+    </header>
+
+    <div class="order-container">
+        <!-- Product Info Section -->
+        <div class="product-info">
+            <img id="productImage" alt="Product Image">
+            <h2 id="productName"></h2>
+            <p>Price: ₹<span id="productPrice"></span></p>
+        </div>
+
+        <!-- Customer Info Section -->
+        <div class="customer-info">
+            <h3>Order Details</h3>
+            <form id="orderForm">
+                <label for="customerName">Name: <span class="required">*</span></label>
+                <input type="text" id="customerName" placeholder="Enter your name" required>
+
+                <label for="customerEmail">Email Address: <span class="required">*</span></label>
+                <input type="email" id="customerEmail" placeholder="Enter your email" required>
+
+                <label for="customerMobile">Mobile No (WhatsApp): <span class="required">*</span></label>
+                <input type="tel" id="customerMobile" placeholder="Enter your mobile number or WhatsApp" required>
+
+                <label for="customerAddress">Address (with pin code): <span class="required">*</span></label>
+                <textarea id="customerAddress" rows="4" placeholder="Enter your address with pin code" required></textarea>
+
+                <label for="designDetails">Design Description (Optional):</label>
+                <textarea id="designDetails" rows="4" placeholder="Provide additional details about your design & mention the final delivery date"></textarea>
+
+                <button type="submit">Place Order</button>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- Popup -->
+    <div class="overlay"></div>
+    <div class="popup" id="successPopup">
+        <h3>Order Placed Successfully!</h3>
+        <p>Your order details have been sent. We will contact you soon!</p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Handcrafted Hoop Arts. All Rights Reserved. Developed by Jadhav Santosh Sampat</p>
+        <p>&copy; Contact us - san828jadhav@gmail.com</p>
+    </footer>
+
+    <script>
+        // Extract URL parameters
+        function getURLParameter(parameterName) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(parameterName);
+        }
+
+        // Populate product details
+        document.addEventListener("DOMContentLoaded", () => {
+            const productImage = getURLParameter("image");
+            const productName = getURLParameter("name");
+            const productPrice = getURLParameter("price");
+
+            // Set values in the DOM
+            if (productImage) {
+                document.getElementById("productImage").src = productImage;
+            } else {
+                document.getElementById("productImage").alt = "No image provided";
+            }
+
+            if (productName) {
+                document.getElementById("productName").innerText = productName;
+            } else {
+                document.getElementById("productName").innerText = "No product name provided";
+            }
+
+            if (productPrice) {
+                document.getElementById("productPrice").innerText = productPrice;
+            } else {
+                document.getElementById("productPrice").innerText = "Price not available";
+            }
+        });
+
+        // Initialize EmailJS
+        emailjs.init('gheVvUCZEdklhWPGv'); // Replace with your Public Key
+
+        // Handle Form Submission
+        document.getElementById('orderForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const customerData = {
+                name: document.getElementById('customerName').value,
+                email: document.getElementById('customerEmail').value,
+                mobile: document.getElementById('customerMobile').value,
+                address: document.getElementById('customerAddress').value,
+                designDetails: document.getElementById('designDetails').value,
+                productImage: document.getElementById('productImage').src, // Use the src of the product image
+                productName: document.getElementById('productName').innerText,
+                productPrice: document.getElementById('productPrice').innerText,
+            };
+
+            // Send email using EmailJS
+            emailjs
+                .send('jadhav828', 'template_quyg81k', customerData)
+                .then(() => {
+                    // Show Success Popup
+                    document.getElementById('successPopup').style.display = 'block';
+                    document.querySelector('.overlay').style.display = 'block';
+                })
+                .catch((error) => {
+                    alert('Failed to place order. Please try again later.');
+                    console.error('EmailJS Error:', error);
+                });
+        });
+
+        // Close Popup & Redirect to index.html
+        function closePopup() {
+            document.getElementById('successPopup').style.display = 'none';
+            document.querySelector('.overlay').style.display = 'none';
+            window.location.href = 'index.html'; // Redirect to index.html
+        }
+    </script>
+
+</body>
+</html>
